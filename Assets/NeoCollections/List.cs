@@ -10,10 +10,7 @@ namespace Neo.Collections {
   public class List<T> : System.Collections.Generic.List<T>, IList<T> {
     public List() : base() { }
     public List(int capacity) : base(capacity) { }
-    public List(System.Collections.Generic.IEnumerable<T> initial)
-      : base() {
-      Iterator.ForEach<T>(initial, (item) => Add(item));
-    }
+    public List(System.Collections.Generic.IEnumerable<T> initial) : base(initial) { }
 
     /// <summary>
     /// Iterates over the collection and calls the func for each member
@@ -23,7 +20,9 @@ namespace Neo.Collections {
     /// </remarks>
     /// <param name="func">to be called per member</param>
     public new void ForEach(Action<T> func) {
-      Iterator.ForEach<T>(this as System.Collections.Generic.List<T>, func);
+      for(int i = 0, imax = this.Count; i < imax; i++) {
+        func(this[i]);
+      }
     }
 
     /// <summary>
@@ -34,7 +33,9 @@ namespace Neo.Collections {
     /// </remarks>
     /// <param name="func">to be called per member with it's index</param>
     public void ForEach(Action<T, int> func) {
-      Iterator.ForEach<T>(this as System.Collections.Generic.List<T>, func);
+      for(int i = 0, imax = this.Count; i < imax; i++) {
+        func(this[i], i);
+      };
     }
 
     /// <summary>

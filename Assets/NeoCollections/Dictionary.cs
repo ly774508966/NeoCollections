@@ -23,10 +23,9 @@ namespace Neo.Collections{
     /// </summary>
     /// <param name="func">called per key and value</param>
     public void ForEach(Action<TKey,TValue> func){
-      Iterator.ForEach<object>(this, (obj) => {
-        System.Collections.Generic.KeyValuePair<TKey,TValue> pair = (System.Collections.Generic.KeyValuePair<TKey,TValue>) obj;
+      foreach(System.Collections.Generic.KeyValuePair<TKey, TValue> pair in this) {
         func(pair.Key, pair.Value);
-      });
+      }
     }
 
     /// <summary>

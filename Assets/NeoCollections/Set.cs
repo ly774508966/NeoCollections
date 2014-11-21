@@ -31,13 +31,15 @@ namespace Neo.Collections{
     }
 
     public void AddAll(System.Collections.Generic.IEnumerable<T> toAdd){
-      Iterator.ForEach<T>(toAdd, Add);
+      foreach(T add in toAdd) {
+        Add(add);
+      }
     }
 
     public void RemoveAll(System.Collections.Generic.IEnumerable<T> toRemove){
-      Iterator.ForEach<T>(toRemove, (item) => {
-        Remove(item); // ignore return value
-      });
+      foreach(T remove in toRemove) {
+        Remove(remove);
+      }
     }
 
     public void Add(T item){
